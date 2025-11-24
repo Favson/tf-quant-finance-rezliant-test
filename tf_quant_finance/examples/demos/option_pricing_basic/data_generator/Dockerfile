@@ -29,6 +29,13 @@ COPY ./common /app/common/
 ENV GOOGLE_APPLICATION_CREDENTIALS="/tmp/google_app_creds/keyfile.json"
 
 WORKDIR /app
+
+# Create non-root user
+RUN useradd -m appuser
+
+# Switch to that user
+USER appuser
+
 ENTRYPOINT ["python3", "data_generation.py"]
 
 # At a minimum, the user should override the output_path to either a GCS
