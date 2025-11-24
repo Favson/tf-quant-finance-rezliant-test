@@ -20,6 +20,13 @@ RUN python3 -m pip install --upgrade protobuf==3.20.3
 # Change work directory
 WORKDIR /workspace
 
+# Create a non-root user
+RUN useradd -m appuser
+
+# Switch to that user
+USER appuser
+
+
 ENTRYPOINT ["bazel"]
 
 
